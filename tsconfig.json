@@ -21,6 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "feather-icons.d.ts"
   ]
 }

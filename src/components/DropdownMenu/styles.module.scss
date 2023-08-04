@@ -1,17 +1,6 @@
-// SCSS variables
-$dropdownMenuWidth: 260px;
-$dropdownMenuBackgroundColor: white;
-$dropdownMenuBoxShadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-$dropdownMenuItemHeight: 45px;
+@import './../../scss/mixines';
+@import './../../scss/variables';
 
-// SCSS mixines
-@mixin flexCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-// SCSS classes
 .dropdownMenu {
   width: $dropdownMenuWidth;
   background-color: $dropdownMenuBackgroundColor;

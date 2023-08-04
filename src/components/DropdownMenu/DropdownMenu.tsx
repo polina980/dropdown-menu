@@ -1,14 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './styles.module.scss';
 
-const DropdownMenu = ({ trigger, content, style }) => {
+interface IDropdownItem {
+  label: string;
+  label2?: String;
+  icon: ReactNode;
+};
+
+interface IDropdownMenuProps {
+  trigger: ReactNode;
+  content: IDropdownItem[];
+  style: React.CSSProperties;
+}
+
+const DropdownMenu: React.FC<IDropdownMenuProps> = ({ trigger, content, style }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   // Для хранения ссылки на элемент выпадающего меню
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   // Для хранения ссылки на элемент триггера, который открывает выпадающее меню
-  const triggerRef = useRef(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   // Функция для определения оптимальной позиции для отображения выпадающего меню
   const calculatePosition = () => {
@@ -62,12 +74,12 @@ const DropdownMenu = ({ trigger, content, style }) => {
   };
 
   // Обработчик для закрытия меню при клике вне его области
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
-      !dropdownRef.current.contains(event.target) &&
+      !dropdownRef.current.contains(event.target as Node) &&
       triggerRef.current &&
-      !triggerRef.current.contains(event.target)
+      !triggerRef.current.contains(event.target as Node)
     ) {
       setIsOpen(false);
     }
@@ -122,7 +134,7 @@ const DropdownMenu = ({ trigger, content, style }) => {
               ))}
             </div>
           </div>,
-          document.getElementById('modal')
+          document.getElementById('modal') as HTMLElement
         )}
     </div>
   );

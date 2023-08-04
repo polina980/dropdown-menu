@@ -3,14 +3,22 @@ import { menuContent } from '../../utils/content';
 import FeatherIcon from 'feather-icons-react';
 import './styles.module.scss';
 
-const positions = [
+interface IPositions {
+  position: 'absolute';
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
+
+const positions: IPositions[] = [
   { position: 'absolute', top: 0, left: 0 },
   { position: 'absolute', top: 0, right: 0 },
   { position: 'absolute', bottom: 0, left: 0 },
   { position: 'absolute', bottom: 0, right: 0 },
 ];
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <main>
       {positions.map((position, index) => (
